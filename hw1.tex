@@ -1,0 +1,522 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{ToC\\
+HW-1\\
+Regular languages and FA}
+\author{Igumnov Oleg}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Task №1. Construct DFA recognizing language }
+
+\subsection{$L=\{\omega \in \{a,b,c\}^* | |\omega|_{c}=1 \}$}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.3\textwidth]{1-1.gv.png}
+\end{figure}
+
+
+\subsection{$L=\{\omega \in \{a,b\}^* | |\omega|_{a}\leq 2,|\omega|_{b}\geq 2  \}$}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{1-2.gv.png}
+\end{figure}
+
+\subsection{$L=\{\omega \in \{a,b\}^* | |\omega|_{a}\neq |\omega|_{b}  \}$}
+It is impossible to construct DFA, since here we need to remember amount
+\subsection{$L=\{\omega \in \{a,b\}^* | \omega\omega = \omega\omega\omega  \}$}
+\omega = \lambda
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.1\textwidth]{1-4.gv.png}
+\end{figure}
+
+
+\section{Task №2. Construct FA using Cartesian product}
+\subsection{$L_{1}=\{\omega \in \{a,b\} | |\omega|_{a}\geq 2 \wedge|\omega|_{b}\geq 2  \}$}
+Let's construct 2 DFA:
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=0.5\textwidth]{2-1-1.gv.png}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.5\textwidth]{2-1-2.gv.png}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.7\textwidth]{2-1-3.gv.png}
+\end{subfigure}
+\end{figure}
+
+$\Sigma=\Sigma_{1} \cup \Sigma_{2} = \{a,b\}$
+
+$Q = Q_{1} \times Q_{2} = \{p_{1}q_{1}, p_{1}q_{2}, p_{1}q_{3}, p_{2}q_{1}, p_{2}q_{2}, p_{2}q_{3}, p_{3}q_{1}, p_{3}q_{2}, p_{3}q_{3},\}$
+
+$s =(s_{1}, s_{2}) = (p_{1}, q_{1})$
+
+$T = T_{1} \times T_{2} =\{p_{3}q_{3} \}$
+
+$\delta(p_{1}q_{1},a)=p_{2}q_{1},\delta(p_{1}q_{1},b)=p_{1}q_{2},\delta(p_{1}q_{2},a)=p_{2}q_{2},\delta(p_{1}q_{2},b)=p_{1}q_{3},\delta(p_{1}q_{3},a)=p_{2}q_{3},\delta(p_{1}q_{3},b)=p_{1}q_{3},\delta(p_{2}q_{1},a)=p_{3}q_{1},\delta(p_{2}q_{1},b)=p_{2}q_{2},\delta(p_{2}q_{2},a)=p_{3}q_{2},\delta(p_{2}q_{2},b)=p_{2}q_{3},\delta(p_{2}q_{3},a)=p_{3}q_{3},\delta(p_{2}q_{3},b)=p_{2}q_{3},\delta(p_{3}q_{1},a)=p_{3}q_{1},\delta(p_{3}q_{1},b)=p_{3}q_{2},\delta(p_{3}q_{2},a)=p_{3}q_{2},\delta(p_{3}q_{2},b)=p_{3}q_{3},\delta(p_{3}q_{3},a)=p_{3}q_{3},\delta(p_{3}q_{3},b)=p_{3}q_{3}$
+
+
+
+\subsection{$L_{2}=\{\omega \in \{a,b\}^* | |\omega|\geq 3 \wedge|\omega| \text{ odd}  \}$}
+
+Let's construct 2 DFA:
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=0.6\textwidth]{2-2-1.gv.png}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.3\textwidth]{2-2-2.gv.png}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.8\textwidth]{2-2-3.gv.png}
+\end{subfigure}
+\end{figure}
+
+$\Sigma=\Sigma_{1} \cup \Sigma_{2} = \{a,b\}$
+
+$Q = Q_{1} \times Q_{2} = \{p_{1}q_{1}, p_{1}q_{2},  p_{2}q_{1}, p_{2}q_{2}, p_{3}q_{1}, p_{3}q_{2}, p_{4}q_{1}, p_{4}q_{2},\}$
+
+$s =(s_{1}, s_{2}) = (p_{1}, q_{1})$
+
+$T = T_{1} \times T_{2} =\{p_{4}q_{2} \}$
+
+$\delta(p_{1}q_{1},a)=p_{2}q_{2},\delta(p_{1}q_{1},b)=p_{2}q_{2},\delta(p_{1}q_{2},a)=p_{2}q_{1},\delta(p_{1}q_{2},b)=p_{2}q_{1},\delta(p_{2}q_{1},a)=p_{3}q_{2},\delta(p_{2}q_{1},b)=p_{3}q_{2},\delta(p_{2}q_{2},a)=p_{3}q_{1},\delta(p_{2}q_{2},b)=p_{3}q_{1},\delta(p_{3}q_{1},a)=p_{4}q_{2},\delta(p_{3}q_{1},b)=p_{4}q_{2},\delta(p_{3}q_{2},a)=p_{4}q_{1},\delta(p_{3}q_{2},b)=p_{4}q_{1},\delta(p_{4}q_{1},a)=p_{4}q_{2},\delta(p_{4}q_{1},b)=p_{4}q_{2},\delta(p_{4}q_{2},a)=p_{4}q_{1},\delta(p_{4}q_{2},b)=p_{4}q_{1}}$
+
+\subsection{$L_{3}=\{\omega \in \{a,b\}^* | |\omega|_{a} \text{ even} \wedge|\omega|_{b} \vdots 3    \}$}
+
+Let's construct 2 DFA:
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=0.3\textwidth]{2-3-1.gv.png}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.5\textwidth]{2-3-2.gv.png}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.8\textwidth]{2-3-3.gv.png}
+\end{subfigure}
+\end{figure}
+
+$\Sigma=\Sigma_{1} \cup \Sigma_{2} = \{a,b\}$
+
+$Q = Q_{1} \times Q_{2} = \{p_{1}q_{1}, p_{1}q_{2},  p_{1}q_{3}, p_{2}q_{1}, p_{2}q_{2}, p_{2}q_{3} \}$
+
+$s =(s_{1}, s_{2}) = (p_{1}, q_{1})$
+
+$T = T_{1} \times T_{2} =\{p_{1}q_{1} \}$
+
+$\delta(p_{1}q_{1},a)=p_{2}q_{1},\delta(p_{1}q_{1},b)=p_{1}q_{2},\delta(p_{1}q_{2},a)=p_{2}q_{2},\delta(p_{1}q_{2},b)=p_{1}q_{3},\delta(p_{1}q_{3},a)=p_{2}q_{3},\delta(p_{1}q_{3},b)=p_{1}q_{1},\delta(p_{2}q_{1},a)=p_{1}q_{1},\delta(p_{2}q_{1},b)=p_{2}q_{2},\delta(p_{2}q_{2},a)=p_{1}q_{2},\delta(p_{2}q_{2},b)=p_{2}q_{3},\delta(p_{2}q_{3},a)=p_{1}q_{3},\delta(p_{2}q_{3},b)=p_{2}q_{1}$
+
+\subsection{$L_{4}=\overline{L_{3}}$}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{2-4.gv.png}
+\end{figure}
+
+$T = \{p_{1}q_{2},  p_{1}q_{3}, p_{2}q_{1}, p_{2}q_{2}, p_{2}q_{3} \}$
+
+\subsection{$L_{5}=L_{2} \backslash L_{3}$}
+
+$L_{5}=L_{2} \backslash L_{3}=L_{2} \cap \overline{ L_{3}}=L_{2} \cap L_{4}$
+
+$T=T_{2} \times (Q_{4} \backslash T_{4})=\{p_{4}q_{2}r_{1}t_{1}\}$
+
+$\Sigma=\Sigma_{2} \cup \Sigma_{4} = \{a,b\}$
+
+$s =(s_{2}, s_{4}) = (p_{1}, q_{1},r_{1},t_{1})$
+
+$Q = Q_{2} \times Q_{4} = \{ ...\}
+
+$|Q|=48$
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{2-5-1.gv.png}
+\end{figure}
+
+\section{Task №3. Construct minimal DFA by regular expression}
+\subsection{$(ab+aba)^{*}a$}
+Let's construct NFA with $\varepsilon$, then construct NFA without $\varepsilon$, then construct DFA using transition table
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=1.1\textwidth]{3-1-1.gv.png}
+\caption{\varepsilon NFA}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.5\textwidth]{3-1-2.gv.png}
+\caption{NFA}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.5\textwidth]{3-1-3.gv.png}
+\caption{min DFA}
+\end{subfigure}
+\end{figure}
+
+\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+\hline
+ \multicolumn{3}{|c|}{NFA} \\
+\hline
+
+_& a &b \\
+\hline
+q_{0} & \{q_{1},q_{2},q_{4}\} & \emptyset \\
+q_{1} & \emptyset  & q_{0} \\
+q_{2} & \emptyset  & q_{3} \\
+q_{3} & q_{0}  &  \emptyset\\
+q_{4} & \emptyset  &  \emptyset\\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+ \hline
+ \multicolumn{3}{|c|}{DFA} \\
+ \hline
+ #& a	&b \\
+ \hline
+ q0 & q_{1}q_{2}q_{4} &\emptyset \\
+
+ q_{1}q_{2}q_{4} & \emptyset	& q_{0}q_{3} \\
+ q_{0}q_{3}	&q_{0}q_{1}q_{2}q_{4}	& \emptyset \\
+ q_{0}q_{1}q_{2}q_{4}	&q_{1}q_{2}q_{4}	& q_{0}q_{3} \\
+
+  \hline
+\end{tabular}
+
+Finally let's rename nodes: q_{0}=q_{0}, q_{1}=q_{1}q_{2}q_{4}, q_{2}=q_{0}q_{3},q_{3}=q_{0}q_{1}q_{2}q_{4}
+
+Minimization:
+
+eq 0: \{q0, q2\} \{q1, q3\}
+
+eq 1: \{q0, q2\} \{q1, q3\}
+
+Constructed DFA is already minimal
+
+\subsection{$a(a(ab)^{*}b)^{*}(ab)^{*}$}
+
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=1.1\textwidth]{3-2-1.gv.png}
+\caption{\varepsilon NFA}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.9\textwidth]{3-2-2.gv.png}
+\caption{NFA}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=0.8\textwidth]{3-2-3.gv.png}
+\caption{DFA}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.8\textwidth]{3-2-4.gv.png}
+\caption{min DFA}
+\end{subfigure}
+\end{figure}
+\clearpage
+NFA to DFA
+
+\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+\hline
+ \multicolumn{3}{|c|}{NFA} \\
+\hline
+
+_& a &b \\
+\hline
+q_{0} & q_{1} & \emptyset \\
+q_{1} & \{q_{2},q_{6}\}  & \emptyset \\
+\{q_{2},q_{6}\} & q_{3} & \{q_{5},q_{7}\} \\
+q_{3} & \emptyset  & q_{4} \\
+\{q_{5},q_{7}\} & \{q_{2},q_{6}\}  &  \emptyset\\
+q_{4} & q_{3}  &  q_{5}\\
+\hline
+\end{tabular}
+
+Minimization:
+
+eq 0: \{p0, p2, p3, p4\} \{p1, p5\}
+
+eq 1: \{p0, p2, p4\} \{p3\} \{p1, p5\}
+
+eq 2: \{p2, p4\} \{p0\} \{p3\} \{p1, p5\}
+
+eq 3: \{p2, p4\} \{p0\} \{p3\} \{p1, p5\}
+
+\subsection{$(a+(a+b)(a+b)b)^{*}$}
+
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=0.4\textwidth]{3-3-1.gv.png}
+\caption{NFA}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.6\textwidth]{3-3-2.gv.png}
+\caption{DFA, min DFA}
+\end{subfigure}
+\end{figure}
+
+NFA to DFA
+
+\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+\hline
+ \multicolumn{3}{|c|}{NFA} \\
+\hline
+
+_& a &b \\
+\hline
+q_{1} & \{q_{1},q_{2}\} & q_{2} \\
+\{q_{1},q_{2}\} & \{q_{1},q_{2},q_{3}\}  & \{q_{2},q_{3}\} \\
+\{q_{1},q_{2},q_{3}\} & \{q_{1},q_{2},q_{3}\} & \{q_{1},q_{2},q_{3}\} \\
+q_{2} & q_{3}  & q_{3} \\
+\{q_{2},q_{3}\} & q_{3}  &  \{q_{1},q_{3}\}\\
+\{q_{1},q_{3}\} & q_{2}  &  \{q_{1},q_{2}\}\\
+q_{3} & \emptyset  & q_{1} \\
+\hline
+\end{tabular}
+
+Minimization:
+
+eq 0: \{p4, p5, p6\} \{p1, p2, p3, p7\}
+
+eq 1: \{p4, p6\} \{ p5\} \{p1, p2\}  \{p3\} \{p7\}
+
+eq 2: \{p1\} \{p2\} \{p3\} \{p4\} \{p5\} \{p6\} \{p7\} 
+
+Constructed DFA is already minimal
+
+
+\subsection{$(b+c)((ab)^{*}c+(ba)^{*})^{*}$}
+
+\begin{figure}[h]
+\begin{subfigure}
+\centering
+\includegraphics[width=0.4\textwidth]{3-4.gv.png}
+\caption{3-4 min DFA}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=0.6\textwidth]{3-5-1.gv.png}
+\caption{NFA,3-5}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=1.0\textwidth]{3-5-2.gv.png}
+\caption{DFA,3-5}
+\end{subfigure}
+\begin{subfigure}
+\centering
+\includegraphics[width=1.0\textwidth]{3-5-3.gv.png}
+\caption{min DFA,3-5}
+\end{subfigure}
+\end{figure}
+
+Minimization:
+
+eq0: \{1,3,4,5\} \{2\}
+
+eq: \{1\}\{2\}\{3\}\{4\} \{5\}
+
+\subsection{$(a+b)^{+}(a a+bb+abab+baba)(a+b)^{+}$}
+
+
+Minimization:
+
+eq0: \{1,2,3,4,5,6,7,8,11,12,16,17\} \{9,10,13,14,15,18\}
+
+eq1: \{1,2,3,4,6,7,11,12\} \{5,8,16,17\} \{9,10,13,14,15,18\}
+
+eq2: \{1,2\} \{3,7\} \{4,6\} \{11,12\} \{5,8,16,17\} \{9,10,13,14,15,18\}
+
+eq3: \{1\} \{2\} \{3\} \{4\} \{6\} \{7\} \{11,12\} \{5,8,16,17\} \{9,10,13,14,15,18\}
+
+eq4: \{1\} \{2\} \{3\} \{4\} \{6\} \{7\} \{11,12\} \{5,8,16,17\} \{9,10,13,14,15,18\}
+
+
+\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+\hline
+ \multicolumn{3}{|c|}{NFA to DFA} \\
+\hline
+
+_& a &b \\
+\hline
+p_{1} & p_{2} & p_{2} \\
+p_{2} & p_{3} & p_{4} \\
+p_{3} & p_{5} & p_{6} \\
+p_{4} & p_{7} & p_{8} \\
+p_{5} & p_{9} & p_{10} \\
+p_{6} & p_{11} & p_{8} \\
+p_{7} & p_{5} & p_{12} \\
+p_{8} & p_{13} & p_{14} \\
+p_{9} & p_{9} & p_{10} \\
+p_{10} & p_{15} & p_{14} \\
+p_{11} & p_{5} & p_{16} \\
+p_{12} & p_{17} & p_{8} \\
+p_{13} & p_{9} & p_{18} \\
+p_{14} & p_{13} & p_{14} \\
+p_{15} & p_{9} & p_{18} \\
+p_{16} & p_{15} & p_{14} \\
+p_{17} & p_{9} & p_{18} \\
+p_{18} & p_{15} & p_{14} \\
+\hline
+\end{tabular}
+
+\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+\hline
+ \multicolumn{3}{|c|}{Min} \\
+\hline
+
+_& a &b \\
+\hline
+a_{1} & a_{2} & a_{2} \\
+a_{2} & a_{3} & a_{4} \\
+a_{3} & a_{8} & a_{5} \\
+a_{4} & a_{6} & a_{8} \\
+a_{5} & a_{7} & a_{8} \\
+a_{6} & a_{8} & a_{7} \\
+a_{7} & a_{8} & a_{8} \\
+a_{8} & a_{9} & a_{9} \\
+a_{9} & a_{9} & a_{9} \\
+\hline
+\end{tabular}
+
+
+\section{Task №4. Determine whether the language is regular or not}
+if it's regular construct FA
+else proof that language is irregular using pumping lemma
+\subsection{$L=\{{(aab)}^{n}b(aba)^{m}|n \geq 0, m \geq 0 \}$ }
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{4-1.gv.png}
+\caption{4-1 DFA}
+\end{figure}
+\subsection{$L=\{uaav|u \in \{a,b\}^{*}, v \in a,b^{*}, |u|_{b} \geq |v|_{a} \}$}
+
+Fix n. 
+
+\omega = b^{n}aaa^{n}, |\omega| \geq n 
+
+\omega = xyz,  |y| \geq 1 , |xy| \leq n
+
+x=b^{f},  y=b^{l},  z=b^{n-f-l}aaa^{n}
+
+f+l \leq n, l\geq 1
+
+\omega = xy^{k}z= b^{f}b^{kl}b^{n-f-l}aaa^{n}
+
+if k=0 then \omega = b^{f}b^{n-f-l}aaa^{n}=b^{n-l}aaa^{n}
+
+$|u|_{b} \geq |v|_{a} $ isn't true
+
+lemma not true
+
+L is not regular
+
+\subsection{$L=\{a^{m}\omega|\omega \in \{a,b \}^{*}, 1 \leq |\omega|_{b} \leq m \}$}
+
+Fix n. 
+
+\omega = a^{n}b^{n}, |\omega| \geq n 
+
+\omega = xyz,  |y| \geq 1 , |xy| \leq n
+
+x=a^{f},  y=a^{l},  z=a^{n-f-l}b^{n}
+
+f+l \leq n, l\geq 1
+
+\omega = xy^{k}z= a^{f}a^{kl}a^{n-f-l}b^{n}
+
+if k=0 then \omega = a^{n-l}b^{n}
+
+$1 \leq |\omega|_{b} \leq m $ isn't true
+
+lemma not true
+
+L is not regular
+
+\subsection{$L=\{a^{k}b^{m}a^{n} | k=n \vee m > 0 \}$}
+
+Fix n. 
+
+\omega = a^{n}ba^{n}, |\omega| \geq n 
+
+\omega = xyz,  |y| \geq 1 , |xy| \leq n
+
+x=a^{f},  y=a^{l},  z=a^{n-f-l}ba^{n}
+
+f+l \leq n, l\geq 1
+
+\omega = xy^{k}z= a^{n+k(l-1)}ba^{n}
+
+
+lemma not true
+
+L is not regular
+
+
+\subsection{$L=\{ucv | u \in \{a,b \}^{*}, v \in \{a,b \}^{*}, u \neq v^{R} \}$}
+
+$\omega =(ab)^{n}c(ba)^{n}=\alpha_{1}...\alpha_{4n+1}$
+
+ $|\omega| \geq n $,
+\omega = xyz
+
+$x=\alpha_{1}...\alpha_{i}$, $y=\alpha_{i+1}...\alpha_{i+j}$,
+
+$z=\alpha_{i+j+1}...\alpha_{2n}c(ba)^{n}$
+
+i+j \leq n ,j \geq 1
+
+$|xy| \leq n$
+
+$|y| \geq 1$
+
+$\omega = xy^{k}z=\alpha_{1}...\alpha_{i}(\alpha_{i+1}...\alpha_{i+j})^{k}\alpha_{i+j+1}...\alpha_{2n}c(ba)^{n} $
+
+lemma not true
+
+L is not regular
+
+
+\section{Task №5. Implement algorithms}
+\end{document}
